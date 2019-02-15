@@ -1,0 +1,30 @@
+VerboseLevel:		0
+
+Electron.Energy:	671	#keV
+Electron.Direction:	0
+#0: isotropic,  2: specify theta phi
+Electron.Direction.Theta:	0
+Electron.Direction.Phi:	0
+
+Source.Position.X:	0	#mm
+Source.Position.Y:	0	#mm
+Source.Position.Z:	0.5	#mm
+
+#positions of the detector
+Detector.0.Position:	0  #mm
+Detector.1.Position:	3  #mm
+Detector.2.Position:	6  #mm
+
+#detector dimensions
+Detector.0.Height:	40.0	#mm x direction, dispersive
+Detector.0.Width:	60.0	#mm y direction, non-dispersive
+Detector.0.Depth:	1.0	#mm z = beam dir
+
+Detector.1.Height:	40.0	#mm x direction, dispersive
+Detector.1.Width:	60.0	#mm y direction, non-dispersive
+Detector.1.Depth:	1.0	#mm z = beam dir
+
+Detector.2.Height:	40.0	#mm x direction, dispersive
+Detector.2.Width:	60.0	#mm y direction, non-dispersive
+Detector.2.Depth:	1.0	#mm z = beam dir
+

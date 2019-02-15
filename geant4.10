@@ -1,0 +1,4 @@
+##geant4 10
+. /usr/local/geant4_10.0/bin/geant4.sh
+source /usr/local/geant4_10.0/share/Geant4-10.0.4/geant4make/geant4make.sh
+echo "setting GEANT4 10.0"
