@@ -8,7 +8,7 @@ Electron.Direction.Phi:	0
 
 Source.Position.X:	0	#mm
 Source.Position.Y:	0	#mm
-Source.Position.Z:	0.	#mm
+Source.Position.Z:	0.5	#mm
 
 #positions of the detector
 Detector.0.Position:	0  #mm

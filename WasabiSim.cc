@@ -33,10 +33,12 @@ int main(int argc,char** argv)
   char* setFile = NULL;
   int nevents = 0;
   bool vis = false;
+  double impz = -999;
   CommandLineInterface* interface = new CommandLineInterface();
   interface->Add("-n", "number of events", &nevents);
   interface->Add("-o", "output root file", &rootFile);
   interface->Add("-s", "settings file", &setFile);
+  interface->Add("-z", "implantation z position, overrides settings", &impz);
   interface->Add("-vis", "switch on visualization", &vis);
 
   interface->CheckFlags(argc, argv);
@@ -60,6 +62,8 @@ int main(int argc,char** argv)
   }
 
   Settings* set = new Settings(setFile);
+  if(impz>-999)
+    set->SetZPosition(impz);
   
   DataManager* data = new DataManager(rootFile,nevents);
 

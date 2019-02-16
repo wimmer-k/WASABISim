@@ -27,10 +27,14 @@ public:
   void ReadSettings();
   void PrintSettings();
   void SetFile(const char* filename){fInputFile = filename;}
+
+  void SetZPosition(double zpos){fPosZ = zpos;}
+  
   const string InputFile(){return fInputFile;}
 
   int VLevel(){return fVerboseLevel;}
- 
+  
+  
   double ElectronEnergy(){return fElectronEnergy;}
   int ElectronDirection(){return fElectronDirection;}
   double ElectronDirectionTheta(){return fElectronTheta;}
@@ -39,6 +43,9 @@ public:
   double SourcePositionX(){return fPosX;} 
   double SourcePositionY(){return fPosY;} 
   double SourcePositionZ(){return fPosZ;} 
+
+  const char* PosHistFile(){return fPosHistFile.c_str();}
+  const char* PosHistName(){return fPosHistName.c_str();}
 
   double DetectorResolution(int d){return fDetR[d];} 
   double DetectorPosition(int d){return fDetP[d];} 
@@ -56,6 +63,8 @@ protected:
   double fPosX;
   double fPosY;
   double fPosZ;
+  string fPosHistFile;
+  string fPosHistName;
   double fDetR[NDET];
   double fDetP[NDET];
   double fDetZ[NDET];

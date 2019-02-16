@@ -12,6 +12,7 @@ class DataManager;
 #include <TObject.h>
 #include <TFile.h>
 #include <TTree.h>
+#include <TVector3.h>
 
 
 class DataManager{
@@ -20,7 +21,7 @@ public:
   DataManager(const char* filename, int nevents);
   ~DataManager();
   void Init(const char* filename);
-  void SetSim(double e, double z);
+  void SetSim(double e, TVector3 v);
   void FillTree(WASABI* wasabi, double *en, double etot);
   void Clear(const Option_t* option="");
   void Close();
@@ -29,7 +30,7 @@ public:
 private:
   int fnevents;
   double fesim;
-  double fzsim;
+  TVector3 fvsim;
   double fedet[NDET];
   double fetot;
   WASABI *fwasabi;

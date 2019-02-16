@@ -29,6 +29,9 @@ void Settings::ReadSettings(){
   fPosY = set->GetValue("Source.Position.Y",0.0);
   fPosZ = set->GetValue("Source.Position.Z",-10.0);
 
+  fPosHistFile = set->GetValue("Position.Hist.File","nofile");
+  fPosHistName = set->GetValue("Position.Hist.Name","nofile");
+
   for(int i=0;i<NDET;i++){
     fDetR[i] = set->GetValue(Form("Detector.%d.Resulution",i),12.0);
     fDetP[i] = set->GetValue(Form("Detector.%d.Position"  ,i),0.0);
@@ -48,6 +51,9 @@ void Settings::PrintSettings(){
   cout << "Source.Position.X\t" << fPosX << endl; 
   cout << "Source.Position.Y\t" << fPosY << endl; 
   cout << "Source.Position.Z\t" << fPosZ << endl; 
+  cout << "Position.Hist.File\t" << fPosHistFile << endl;
+  cout << "Position.Hist.Name\t" << fPosHistName << endl;
+  
   for(int i=0;i<NDET;i++){
     cout << "Detector."<< i <<".Resolution\t" << fDetR[i] << endl; 
     cout << "Detector."<< i <<".Position\t"   << fDetP[i] << endl; 

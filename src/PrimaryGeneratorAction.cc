@@ -20,6 +20,10 @@ PrimaryGeneratorAction::PrimaryGeneratorAction(Settings* set, DataManager* data)
   // store the pointer to the data class locally, in order to be able to acess all information later
   fdata = data;
   fset = set;
+  TFile *input = new TFile(fset->PosHistFile());
+  fposdistribution = NULL;
+  if(input->IsOpen())
+    fposdistribution = (TH2F*)input->Get(fset->PosHistName());
 
   // in each event one gamma ray is emitted
   G4int n_particle = 1;
@@ -35,12 +39,23 @@ PrimaryGeneratorAction::~PrimaryGeneratorAction(){
 
 void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent){
   //set position
-  particleGun->SetParticlePosition(G4ThreeVector(fset->SourcePositionX()*CLHEP::mm, fset->SourcePositionY()*CLHEP::mm, fset->SourcePositionZ()*CLHEP::mm));
-  double zpos = fset->SourcePositionZ();
+  double x,y;
+  int impdet = 0;
+  if(fposdistribution){
+    fposdistribution->GetRandom2(x,y);
+    x = x/NXSTRIPS*fset->DetectorWidth(impdet)-fset->DetectorWidth(impdet)/2;
+    y = y/NYSTRIPS*fset->DetectorHeight(impdet)-fset->DetectorHeight(impdet)/2;
+  }
+  else{
+    x = fset->SourcePositionX()*mm;
+    y = fset->SourcePositionY()*mm;
+  }
+  particleGun->SetParticlePosition(G4ThreeVector(x,y, fset->SourcePositionZ()*mm));
+  double z = fset->SourcePositionZ()*mm;
   double tmp;
   
   particleGun->SetParticleEnergy(fset->ElectronEnergy()*keV);
-  fdata->SetSim(fset->ElectronEnergy(), zpos*mm);
+  fdata->SetSim(fset->ElectronEnergy(), TVector3(x,y,z));
   //----------set the particle direction
   // create a vector
   G4ThreeVector v(0.0,0.0,1.0);
