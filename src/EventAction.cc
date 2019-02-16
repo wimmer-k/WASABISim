@@ -86,7 +86,8 @@ void EventAction::EndOfEventAction(const G4Event* evt){
       if(strY[i][s]>0)
 	wasabi->GetDSSSD(i)->AddHitY(new WASABIHit(s,strY[i][s],true));
     }
-  }
+    wasabi->GetDSSSD(i)->Addback();
+  }//loop detectors
 
   // fill the tree in the datamanager object, this saves the event to the ouput file
   if(etot>0)
