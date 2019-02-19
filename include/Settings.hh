@@ -43,6 +43,7 @@ public:
   double SourcePositionX(){return fPosX;} 
   double SourcePositionY(){return fPosY;} 
   double SourcePositionZ(){return fPosZ;} 
+  double SourceWidthZ(){return fWidthZ;} 
 
   const char* PosHistFile(){return fPosHistFile.c_str();}
   const char* PosHistName(){return fPosHistName.c_str();}
@@ -63,6 +64,7 @@ protected:
   double fPosX;
   double fPosY;
   double fPosZ;
+  double fWidthZ;
   string fPosHistFile;
   string fPosHistName;
   double fDetR[NDET];

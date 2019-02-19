@@ -50,9 +50,11 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent){
     x = fset->SourcePositionX()*mm;
     y = fset->SourcePositionY()*mm;
   }
-  particleGun->SetParticlePosition(G4ThreeVector(x,y, fset->SourcePositionZ()*mm));
   double z = fset->SourcePositionZ()*mm;
-  double tmp;
+  if(fset->SourceWidthZ()>0)
+    z+=RandGauss::shoot(0,fset->SourceWidthZ())*mm;
+
+  particleGun->SetParticlePosition(G4ThreeVector(x,y,z));
   
   particleGun->SetParticleEnergy(fset->ElectronEnergy()*keV);
   fdata->SetSim(fset->ElectronEnergy(), TVector3(x,y,z));
